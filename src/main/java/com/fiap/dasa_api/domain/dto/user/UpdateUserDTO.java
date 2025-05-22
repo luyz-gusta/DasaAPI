@@ -2,7 +2,6 @@ package com.fiap.dasa_api.domain.dto.user;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import lombok.Getter;
@@ -21,7 +20,7 @@ public class UpdateUserDTO {
     @NotNull
     private String name;
 
-    @NotNull
+    @NotNull(message = "Date birth is not null")
     @Past
     private Date date_birth;
 

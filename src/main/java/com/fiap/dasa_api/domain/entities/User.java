@@ -3,6 +3,8 @@ package com.fiap.dasa_api.domain.entities;
 import com.fiap.dasa_api.domain.dto.user.RequestUserDTO;
 import com.fiap.dasa_api.domain.dto.user.UpdateUserDTO;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,7 +16,8 @@ import java.util.Date;
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_user;
+    @Column(name = "id_user")
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -60,6 +63,7 @@ public class User {
         this.password = userDTO.getPassword();
         this.photo = userDTO.getPhoto();
         this.registration = userDTO.getRegistration();
+        this.status = true;
     }
 
     public User(UpdateUserDTO userDTO) {
@@ -83,19 +87,19 @@ public class User {
     }
 
     public User(
-            Long id_user, String name, Date date_birth, String registration,
+            Long id, String name, Date date_birth, String registration,
             String email, String photo, String password, Boolean status,
             String reset_token, LocalDateTime created_at,
             LocalDateTime updated_at, LocalDateTime valided_token
     ) {
-        this.id_user = id_user;
+        this.id = id;
         this.name = name;
         this.date_birth = date_birth;
         this.registration = registration;
         this.email = email;
         this.photo = photo;
         this.password = password;
-        this.status = status;
+        this.status = true;
         this.reset_token = reset_token;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -103,11 +107,11 @@ public class User {
     }
 
     public Long getId() {
-        return id_user;
+        return id;
     }
 
-    public void setId(Long id_user) {
-        this.id_user = id_user;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

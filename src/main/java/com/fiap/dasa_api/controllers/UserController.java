@@ -9,6 +9,7 @@ import com.fiap.dasa_api.infra.responses.ApiResponseBuilder;
 import com.fiap.dasa_api.infra.responses.details.ApiListResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiSingleResponse;
 import com.fiap.dasa_api.repositories.UserRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -25,6 +26,7 @@ import java.util.Objects;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/user")
+@Tag(name = "User")
 public class UserController {
     private final UserRepository repository;
     private final UserMapper mapper;
@@ -50,10 +52,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiSingleResponse<User>> getUserById(@PathVariable Long id) {
+    public ResponseEntity<ApiSingleResponse<ResponseUserDTO>> getUserById(@PathVariable Long id) {
         User user = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
-        return ResponseEntity.ok(ApiResponseBuilder.singleSuccess(user));
+        ResponseUserDTO userResponse = mapper.toUserResponse(user);
+
+        return ResponseEntity.ok(ApiResponseBuilder.singleSuccess(userResponse));
     }
 
     @PostMapping
@@ -62,7 +66,7 @@ public class UserController {
             User newUser = new User(userDTO);
             repository.save(newUser);
 
-            ResponseUserDTO user = new ResponseUserDTO(newUser);
+            ResponseUserDTO user = mapper.toUserResponse(newUser);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponseBuilder.singleCreate(user));
         } catch (Exception exp) {
@@ -81,7 +85,7 @@ public class UserController {
         }
 
         user.setUpdatedUser(userDTO);
-        ResponseUserDTO userResponse = new ResponseUserDTO(user);
+        ResponseUserDTO userResponse = mapper.toUserResponse(user);
         return ResponseEntity.ok(ApiResponseBuilder.singleSuccess(userResponse));
     }
 
@@ -91,7 +95,7 @@ public class UserController {
         User user = repository.findById(id).orElseThrow(EntityNotFoundException::new);
         user.setStatus(!user.getStatus());
 
-        ResponseUserDTO userResponse = new ResponseUserDTO(user);
+        ResponseUserDTO userResponse = mapper.toUserResponse(user);
         return ResponseEntity.ok(ApiResponseBuilder.singleUpdate(userResponse));
     }
 

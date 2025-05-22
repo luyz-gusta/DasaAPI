@@ -22,16 +22,4 @@ public class ResponseUserDTO {
     private Boolean status;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-
-    public ResponseUserDTO(User user){
-        this.id = user.getId();
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.date_birth = user.getDate_birth();
-        this.photo = user.getPhoto();
-        this.registration = user.getRegistration();
-        this.status = user.getStatus();
-        this.created_at = user.getCreated_at();
-        this.updated_at = user.getUpdated_at();
-    }
 }

@@ -26,7 +26,7 @@ public class UpdateUserDTO {
     @NotNull(message = "Date birth is not null")
     @Past
     @Schema(example = "2006-02-15", requiredMode = Schema.RequiredMode.REQUIRED)
-    private Date date_birth;
+    private Date dateBirth;
 
     @Nullable
     private String registration;
@@ -41,8 +41,8 @@ public class UpdateUserDTO {
     private String photo;
 
     @Nullable
-    private String reset_token;
+    private String resetToken;
 
     @Nullable
-    private LocalDateTime valided_token;
+    private LocalDateTime validedToken;
 }

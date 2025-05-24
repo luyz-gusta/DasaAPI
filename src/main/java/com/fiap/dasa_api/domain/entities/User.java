@@ -1,21 +1,23 @@
 package com.fiap.dasa_api.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fiap.dasa_api.domain.dto.user.RequestUserDTO;
 import com.fiap.dasa_api.domain.dto.user.UpdateUserDTO;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Table(name="tb_user")
-@Entity(name="tb_user")
+@Table(name = "tb_user")
+@Entity(name = "tb_user")
 public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Long id;
 
@@ -23,7 +25,7 @@ public class User {
     private String name;
 
     @Column(name = "date_birth", nullable = false)
-    private Date date_birth;
+    private Date dateBirth;
 
     @Column(name = "registration")
     private String registration;
@@ -41,25 +43,29 @@ public class User {
     private Boolean status;
 
     @Column(name = "reset_token")
-    private String reset_token;
+    private String resetToken;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column(name = "valided_token")
-    private LocalDateTime valided_token;
+    private LocalDateTime validedToken;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<TypeMaterial> typeMaterials = new HashSet<>();
 
     public User() {}
 
     public User(RequestUserDTO userDTO) {
         this.name = userDTO.getName();
         this.email = userDTO.getEmail();
-        this.date_birth = userDTO.getDate_birth();
+        this.dateBirth = userDTO.getDateBirth();
         this.password = userDTO.getPassword();
         this.photo = userDTO.getPhoto();
         this.registration = userDTO.getRegistration();
@@ -69,41 +75,36 @@ public class User {
     public User(UpdateUserDTO userDTO) {
         this.name = userDTO.getName();
         this.email = userDTO.getEmail();
-        this.date_birth = userDTO.getDate_birth();
-        this.reset_token = userDTO.getReset_token();
-        this.valided_token = userDTO.getValided_token();
+        this.dateBirth = userDTO.getDateBirth();
+        this.resetToken = userDTO.getResetToken();
+        this.validedToken = userDTO.getValidedToken();
         this.photo = userDTO.getPhoto();
         this.registration = userDTO.getRegistration();
     }
 
-    public void setUpdatedUser(UpdateUserDTO userDTO){
+    public void setUpdatedUser(UpdateUserDTO userDTO) {
         this.name = userDTO.getName();
         this.email = userDTO.getEmail();
-        this.date_birth = userDTO.getDate_birth();
-        this.reset_token = userDTO.getReset_token();
-        this.valided_token = userDTO.getValided_token();
+        this.dateBirth = userDTO.getDateBirth();
+        this.resetToken = userDTO.getResetToken();
+        this.validedToken = userDTO.getValidedToken();
         this.photo = userDTO.getPhoto();
         this.registration = userDTO.getRegistration();
     }
 
-    public User(
-            Long id, String name, Date date_birth, String registration,
-            String email, String photo, String password, Boolean status,
-            String reset_token, LocalDateTime created_at,
-            LocalDateTime updated_at, LocalDateTime valided_token
-    ) {
+    public User(Long id, String name, Date dateBirth, String registration, String email, String photo, String password, Boolean status, String resetToken, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime validedToken) {
         this.id = id;
         this.name = name;
-        this.date_birth = date_birth;
+        this.dateBirth = dateBirth;
         this.registration = registration;
         this.email = email;
         this.photo = photo;
         this.password = password;
-        this.status = true;
-        this.reset_token = reset_token;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.valided_token = valided_token;
+        this.status = status;
+        this.resetToken = resetToken;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.validedToken = validedToken;
     }
 
     public Long getId() {
@@ -122,12 +123,12 @@ public class User {
         this.name = name;
     }
 
-    public Date getDate_birth() {
-        return date_birth;
+    public Date getDateBirth() {
+        return dateBirth;
     }
 
-    public void setDate_birth(Date date_birth) {
-        this.date_birth = date_birth;
+    public void setDateBirth(Date dateBirth) {
+        this.dateBirth = dateBirth;
     }
 
     public String getRegistration() {
@@ -170,35 +171,35 @@ public class User {
         this.status = status;
     }
 
-    public String getReset_token() {
-        return reset_token;
+    public String getResetToken() {
+        return resetToken;
     }
 
-    public void setReset_token(String reset_token) {
-        this.reset_token = reset_token;
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdated_at(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public LocalDateTime getValided_token() {
-        return valided_token;
+    public LocalDateTime getValidedToken() {
+        return validedToken;
     }
 
-    public void setValided_token(LocalDateTime valided_token) {
-        this.valided_token = valided_token;
+    public void setValidedToken(LocalDateTime validedToken) {
+        this.validedToken = validedToken;
     }
 }

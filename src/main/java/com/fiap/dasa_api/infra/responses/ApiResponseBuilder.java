@@ -40,8 +40,8 @@ public class ApiResponseBuilder {
                 .build();
     }
 
-    public static ApiSingleResponse singleDelete() {
-        return ApiSingleResponse.builder()
+    public static ApiMessageResponse singleDelete() {
+        return ApiMessageResponse.builder()
                 .status(200)
                 .message("Item deletado com sucesso!")
                 .build();

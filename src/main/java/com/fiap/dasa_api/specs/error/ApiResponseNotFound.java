@@ -20,9 +20,9 @@ import java.lang.annotation.Target;
                 mediaType = MediaType.APPLICATION_JSON_VALUE,
                 examples = @ExampleObject(
                         summary = "Resource not found",
-                        value = "{ \"error\": \"ENTITY_NOT_FOUND\", \"details\": { \"entity\": \"Users\", \"parameters\": { \"id\": \"uuid\" } } }"
+                        value = "{ \"status\": \"404\", \"message\": \"Registro não encontrado!\"} } }"
                 )
         )
 )
-public @interface ApiResponseNotFound {
+public @interface   ApiResponseNotFound {
 }

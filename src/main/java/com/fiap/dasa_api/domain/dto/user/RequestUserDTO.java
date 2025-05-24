@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class RequestUserDTO {
 
     @NotBlank(message = "Name is required")
@@ -23,7 +25,7 @@ public class RequestUserDTO {
     @NotNull
     @Past
     @Schema(example = "2006-02-15", requiredMode = Schema.RequiredMode.REQUIRED)
-    private Date date_birth;
+    private Date dateBirth;
 
     @Nullable
     private String registration;

@@ -1,5 +1,3 @@
-
-
 package com.fiap.dasa_api.specs.error;
 
 import io.swagger.v3.oas.annotations.media.Content;
@@ -20,7 +18,7 @@ import java.lang.annotation.Target;
         content = @Content(
                 mediaType = MediaType.APPLICATION_JSON_VALUE,
                 schema = @Schema(
-                        example = "{ \"error\": \"API_FIELDS_INVALID\", \"details\": {} }"
+                        example = "{\"timestamp\": \"2025-05-23T12:08:05.801+00:00\", \"status\": \"400\", \"error\": \"Bad Request\", \"path\": \"/user\" }"
                 )
         )
 )

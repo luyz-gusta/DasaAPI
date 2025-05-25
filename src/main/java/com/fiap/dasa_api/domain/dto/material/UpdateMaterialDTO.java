@@ -19,7 +19,7 @@ public class UpdateMaterialDTO {
     @Nullable
     private Boolean status;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Quantity is required")
     @NotNull
     @Schema(example = "Paracetamol", requiredMode = Schema.RequiredMode.REQUIRED)
     private int quantity;

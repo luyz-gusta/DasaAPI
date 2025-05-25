@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
                 mediaType = MediaType.APPLICATION_JSON_VALUE,
                 examples = @ExampleObject(
                         summary = "Field value already exists in database",
-                        value = "{ \"error\": \"DUPLICATED_RESOURCE\", \"details\": { \"field\": \"value\" } }"
+                        value = "{ \"status\": \"409\", \"message\": \"Duplicidade nos dados, já existe um registro com esse email\" }"
                 )
         )
 )

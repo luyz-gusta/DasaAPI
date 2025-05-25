@@ -13,9 +13,8 @@ public class RequestMaterialDTO {
     @Schema(example = "Paracetamol", requiredMode = Schema.RequiredMode.REQUIRED)
     private String name;
 
-    @NotBlank(message = "Name is required")
     @NotNull
-    @Schema(example = "Paracetamol", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(example = "0", requiredMode = Schema.RequiredMode.REQUIRED)
     private int quantity;
 
     @NotNull

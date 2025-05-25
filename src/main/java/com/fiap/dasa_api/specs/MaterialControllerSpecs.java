@@ -1,8 +1,12 @@
 package com.fiap.dasa_api.specs;
 
 import com.fiap.dasa_api.domain.dto.material.RequestMaterialDTO;
+import com.fiap.dasa_api.domain.dto.material.UpdateMaterialDTO;
+import com.fiap.dasa_api.domain.dto.typeMaterial.UpdateTypeMaterialDTO;
 import com.fiap.dasa_api.domain.entities.Material;
+import com.fiap.dasa_api.domain.entities.TypeMaterial;
 import com.fiap.dasa_api.infra.responses.details.ApiListResponse;
+import com.fiap.dasa_api.infra.responses.details.ApiMessageResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiSingleResponse;
 import com.fiap.dasa_api.specs.error.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,6 +43,18 @@ public interface MaterialControllerSpecs {
     @ApiResponseBadRequest
     @ApiResponseDuplicatedResource
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<ApiSingleResponse<Material>> createMaterial(@RequestBody RequestMaterialDTO body);
+    ResponseEntity<ApiSingleResponse<Material>> createMaterial(@RequestBody RequestMaterialDTO materialDTO);
+
+    @Operation(summary = "Update material")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiSingleResponse<Material>> updateMaterial(@RequestBody UpdateMaterialDTO materialDTO);
+
+    @Operation(summary = "Delete material")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiMessageResponse> deleteMaterial(@PathVariable Long id);
 
 }

@@ -32,16 +32,21 @@ import java.util.List;
 public interface UserControllerSpecs {
 
     @Operation(summary = "Find all users")
-    @ApiResponseForbidden
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiListResponse<ResponseUserDTO>> getAllUsers();
 
     @Operation(summary = "Find user by id")
     @ApiResponseNotFound
-    @ApiResponseForbidden
     @ApiResponseBadRequest
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiSingleResponse<ResponseUserDTO>> getUserById(@PathVariable Long id);
+
+    @Operation(summary = "Find user by status when active status")
+    @ApiResponseNotFound
+    @ApiResponseBadRequest
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiListResponse<ResponseUserDTO>> getAllUsersByActive();
+
 
     @Operation(summary = "Create user")
     @ApiResponseBadRequest
@@ -52,6 +57,21 @@ public interface UserControllerSpecs {
     @Operation(summary = "Updade user")
     @ApiResponseBadRequest
     @ApiResponseDuplicatedResource
-    @ResponseStatus(HttpStatus.CREATED)
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiSingleResponse<ResponseUserDTO>> updateUser(@RequestBody @Valid UpdateUserDTO userDTO);
+
+    @Operation(summary = "Toogle status user")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiSingleResponse<ResponseUserDTO>> toogleStatus(@PathVariable Long id);
+
+    @Operation(summary = "Delete user")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiMessageResponse> deleteUser(@PathVariable Long id);
+
+
 }

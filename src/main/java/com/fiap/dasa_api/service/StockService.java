@@ -24,12 +24,6 @@ public class StockService {
                 .findAll();
     }
 
-
-    public List<Stock> listStockActive() {
-        return repository
-                .findAllByStatusTrue();
-    }
-
     public Stock listStockById(Long id) {
         return repository
                 .findById(id)
@@ -44,6 +38,7 @@ public class StockService {
         Stock newStock = new Stock(stockDTO, user, barcode, typeMovement);
 
         repository.save(newStock);
+
         return newStock;
     }
 
@@ -66,5 +61,4 @@ public class StockService {
         repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.deleteById(id);
     }
-
 }

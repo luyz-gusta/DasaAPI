@@ -52,7 +52,7 @@ public class SwaggerStaticFilesInterceptor extends SwaggerIndexPageTransformer {
             final InputStreamReader isr = new InputStreamReader(is);
             try (BufferedReader br = new BufferedReader(isr)) {
                 String html = br.lines().collect(Collectors.joining());
-                html = html.replace("Swagger UI", "Restaurant API Definition");
+                html = html.replace("Swagger UI", "DASA API Definition");
 
                 html = html.replace("<meta charset=\"UTF-8\">",
                         """

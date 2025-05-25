@@ -1,10 +1,10 @@
 package com.fiap.dasa_api.specs;
 
 import com.fiap.dasa_api.domain.dto.barcode.RequestBarcodeDTO;
-import com.fiap.dasa_api.domain.dto.material.RequestMaterialDTO;
+import com.fiap.dasa_api.domain.dto.barcode.UpdateBarcodeDTO;
 import com.fiap.dasa_api.domain.entities.Barcode;
-import com.fiap.dasa_api.domain.entities.Material;
 import com.fiap.dasa_api.infra.responses.details.ApiListResponse;
+import com.fiap.dasa_api.infra.responses.details.ApiMessageResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiSingleResponse;
 import com.fiap.dasa_api.specs.error.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,6 +35,17 @@ public interface BarcodeControllerSpecs {
     @ApiResponseBadRequest
     @ApiResponseDuplicatedResource
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<ApiSingleResponse<Barcode>> createBarcode(@RequestBody RequestBarcodeDTO body);
+    ResponseEntity<ApiSingleResponse<Barcode>> createBarcode(@RequestBody RequestBarcodeDTO barcodeDTO);
 
+    @Operation(summary = "Update barcode")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiSingleResponse<Barcode>> updateBarcode(@RequestBody UpdateBarcodeDTO barcodeDTO);
+
+    @Operation(summary = "Delete barcode")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiMessageResponse> deleteBarcode(@PathVariable Long id);
 }

@@ -20,7 +20,7 @@ import java.lang.annotation.Target;
                 mediaType = MediaType.APPLICATION_JSON_VALUE,
                 examples = @ExampleObject(
                         summary = "Resource not found",
-                        value = "{ \"status\": \"404\", \"message\": \"Registro não encontrado!\"} } }"
+                        value = "{ \"status\": \"404\", \"message\": \"Registro não encontrado!\" }"
                 )
         )
 )

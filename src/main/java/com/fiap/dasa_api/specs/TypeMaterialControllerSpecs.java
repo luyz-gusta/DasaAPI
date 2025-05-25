@@ -1,8 +1,10 @@
 package com.fiap.dasa_api.specs;
 
 import com.fiap.dasa_api.domain.dto.typeMaterial.RequestTypeMaterialDTO;
+import com.fiap.dasa_api.domain.dto.typeMaterial.UpdateTypeMaterialDTO;
 import com.fiap.dasa_api.domain.entities.TypeMaterial;
 import com.fiap.dasa_api.infra.responses.details.ApiListResponse;
+import com.fiap.dasa_api.infra.responses.details.ApiMessageResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiSingleResponse;
 import com.fiap.dasa_api.specs.error.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,13 +25,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public interface TypeMaterialControllerSpecs {
 
     @Operation(summary = "Find all type material")
-    @ApiResponseForbidden
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiListResponse<TypeMaterial>> getAllTypeMaterial();
 
     @Operation(summary = "Find type material by id")
     @ApiResponseNotFound
-    @ApiResponseForbidden
     @ApiResponseBadRequest
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiSingleResponse<TypeMaterial>> getTypeMaterialById(@PathVariable Long id);
@@ -37,17 +37,19 @@ public interface TypeMaterialControllerSpecs {
 
     @Operation(summary = "Create type material")
     @ApiResponseBadRequest
-    @ApiResponseDuplicatedResource
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Created")
-    })
-    @ApiResponse(responseCode = "201", description = "Created", content = {
-            @Content(
-                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ApiSingleResponse.class)
-            )
-    })
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<ApiSingleResponse<TypeMaterial>> createTypeMaterial(@RequestBody RequestTypeMaterialDTO body);
+    ResponseEntity<ApiSingleResponse<TypeMaterial>> createTypeMaterial(@RequestBody RequestTypeMaterialDTO typeMaterialDTOy);
+
+    @Operation(summary = "Update type material")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiSingleResponse<TypeMaterial>> updateTypeMaterial(@RequestBody UpdateTypeMaterialDTO typeMaterialDTOy);
+
+    @Operation(summary = "Delete type material")
+    @ApiResponseBadRequest
+    @ApiResponseNotFound
+    @ResponseStatus(HttpStatus.OK)
+    ResponseEntity<ApiMessageResponse> deleteTypeMaterial(@PathVariable Long id);
 
 }

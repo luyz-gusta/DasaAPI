@@ -36,12 +36,14 @@ public class TypeMaterialController implements TypeMaterialControllerSpecs {
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiSingleResponse<TypeMaterial>> getTypeMaterialById(@PathVariable Long id) {
-        try {
             TypeMaterial typeMaterials = service.listTypeMaterialById(id);
             return ResponseEntity.ok(ApiResponseBuilder.singleSuccess(typeMaterials));
-        } catch (Exception exp) {
-            throw new InternalException(exp);
-        }
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<ApiListResponse<TypeMaterial>> getTypeMaterialActive() {
+        List<TypeMaterial> typeMaterials = service.listTypesMaterialActive();
+        return ResponseEntity.ok(ApiResponseBuilder.listSuccess(typeMaterials));
     }
 
     @PostMapping

@@ -20,7 +20,7 @@ import java.lang.annotation.Target;
                 examples = @ExampleObject(
 //                        name = "A general error occurred while processing the request",
                         summary = "Unexpected internal error",
-                        value = "{ \"error\": \"INTERNAL_SERVER_ERROR\", \"details\": {} }"
+                        value = "{ \"status\": \"500\", \"message\": \"Error interno no servidor!\" }"
                 )
         )
 )

@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
                 mediaType = MediaType.APPLICATION_JSON_VALUE,
                 examples = @io.swagger.v3.oas.annotations.media.ExampleObject(
                         summary = "User does not have permission",
-                        value = "{ \"error\": \"FORBIDDEN\", \"details\": {} }"
+                        value = "{ \"status\": \"403\", \"message\": \"Usuário sem autorização!\" }"
                 )
         )
 )

@@ -57,7 +57,7 @@ public class MaterialService {
                 .findById(materialDTO.getId())
                 .orElseThrow(EntityNotFoundException::new);
 
-        material.setUpdateTypeMaterial(materialDTO, user, typeMaterial);
+        material.setUpdateMaterial(materialDTO, user, typeMaterial);
         return material;
     }
 

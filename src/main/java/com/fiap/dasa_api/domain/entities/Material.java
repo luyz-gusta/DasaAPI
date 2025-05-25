@@ -62,7 +62,7 @@ public class  Material {
         this.typeMaterial = typeMaterial;
     }
 
-    public void setUpdateTypeMaterial(UpdateMaterialDTO materialDTO, User user, TypeMaterial typeMaterial) {
+    public void setUpdateMaterial(UpdateMaterialDTO materialDTO, User user, TypeMaterial typeMaterial) {
         this.name = materialDTO.getName();
         this.typeMaterial = typeMaterial;
         this.user = user;

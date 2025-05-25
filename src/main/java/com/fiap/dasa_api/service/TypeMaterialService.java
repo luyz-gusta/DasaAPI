@@ -31,7 +31,9 @@ public class TypeMaterialService {
     }
 
     public TypeMaterial listTypeMaterialById(Long id) {
-        return repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return repository
+                .findById(id)
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     public TypeMaterial saveTypeMaterial(RequestTypeMaterialDTO typeMaterialDTO) {
@@ -49,8 +51,6 @@ public class TypeMaterialService {
         TypeMaterial typeMaterial = repository
                 .findById(typeMaterialDTO.getId())
                 .orElseThrow(EntityNotFoundException::new);
-
-
 
         typeMaterial.setUpdateTypeMaterial(typeMaterialDTO,user);
         return typeMaterial;

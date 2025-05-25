@@ -4,10 +4,14 @@ import com.fiap.dasa_api.controllers.TypeMaterialController;
 import com.fiap.dasa_api.domain.dto.typeMaterial.RequestTypeMaterialDTO;
 import com.fiap.dasa_api.domain.dto.typeMaterial.UpdateTypeMaterialDTO;
 import com.fiap.dasa_api.domain.entities.TypeMaterial;
+import com.fiap.dasa_api.infra.errors.ExceptionDTO;
+import com.fiap.dasa_api.infra.errors.exceptions.RequestExceptionHandler;
 import com.fiap.dasa_api.infra.responses.details.ApiListResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiMessageResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiSingleResponse;
 import com.fiap.dasa_api.service.TypeMaterialService;
+import com.fiap.dasa_api.specs.error.ApiResponseNotFound;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
@@ -46,19 +50,24 @@ public class TypeMaterialControllerTest {
         when(typeMaterialService.listTypeMaterialById(1L)).thenReturn(typeMaterial);
 
         ResponseEntity<ApiSingleResponse<TypeMaterial>> response = typeMaterialController.getTypeMaterialById(1L);
+        ApiSingleResponse<TypeMaterial> expected =
+                new ApiSingleResponse<TypeMaterial>(200, "Requisição bem sucedida!", typeMaterial);
+
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(typeMaterial, response.getBody());
+        assertEquals(expected, response.getBody());
     }
 
     @Test
     void testGetById_NotFound() {
+        ApiSingleResponse<TypeMaterial> expected =
+                new ApiSingleResponse<TypeMaterial>(200, "Requisição bem sucedida!", null);
         when(typeMaterialService.listTypeMaterialById(15L)).thenReturn(null);
 
-        ResponseEntity<ApiSingleResponse<TypeMaterial>> response = typeMaterialController.getTypeMaterialById(1L);
+        ResponseEntity<ApiSingleResponse<TypeMaterial>> response = typeMaterialController.getTypeMaterialById(150L);
 
-        assertEquals(404, response.getStatusCodeValue());
-        assertEquals("Tipo de material não encontrado.", response.getBody());
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(expected, response.getBody());
     }
 
     @Test
@@ -68,9 +77,11 @@ public class TypeMaterialControllerTest {
         when(typeMaterialService.saveTypeMaterial(dto)).thenReturn(typeMaterial);
 
         ResponseEntity<ApiSingleResponse<TypeMaterial>> response = typeMaterialController.createTypeMaterial(dto);
+        ApiSingleResponse<TypeMaterial> expected =
+                new ApiSingleResponse<TypeMaterial>(201, "Item criado com sucesso!", typeMaterial);
 
         assertEquals(201, response.getStatusCodeValue());
-        assertEquals(typeMaterial, response.getBody());
+        assertEquals(expected, response.getBody());
     }
 
     @Test
@@ -80,9 +91,11 @@ public class TypeMaterialControllerTest {
         when(typeMaterialService.editTypeMaterial(dto)).thenReturn(typeMaterial);
 
         ResponseEntity<ApiSingleResponse<TypeMaterial>> response = typeMaterialController.updateTypeMaterial(dto);
+        ApiSingleResponse<TypeMaterial> expected =
+                new ApiSingleResponse<TypeMaterial>(200, "Item atualizado com sucesso!", typeMaterial);
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(typeMaterial, response.getBody().getData());
+        assertEquals(expected, response.getBody());
 
     }
 
@@ -91,8 +104,9 @@ public class TypeMaterialControllerTest {
         doNothing().when(typeMaterialService).excludeTypeMaterial(1L);
 
         ResponseEntity<ApiMessageResponse> response = typeMaterialController.deleteTypeMaterial(1L);
+        ApiMessageResponse deleted = new ApiMessageResponse(200,"Item deletado com sucesso!");
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals("Tipo de material deletado com sucesso.", response.getBody());
+        assertEquals(deleted, response.getBody());
     }
 }

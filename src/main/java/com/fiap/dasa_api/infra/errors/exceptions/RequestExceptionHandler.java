@@ -22,10 +22,10 @@ public class RequestExceptionHandler {
     public ResponseEntity<ExceptionDTO> entityNotFoundExceptionHandler(){
         ExceptionDTO response = new ExceptionDTO(404, "Registro não encontrado!");
 
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(InternalException.class)
     public ResponseEntity<ExceptionDTO> internalServerErrorExceptionHandler(Exception exp){
         ExceptionDTO response = new ExceptionDTO(500, exp.getMessage());
 
@@ -34,7 +34,7 @@ public class RequestExceptionHandler {
 
     @ExceptionHandler(DuplicateKeyException.class)
     public ResponseEntity<ExceptionDTO> duplicateKeyExceptionHandler(String key){
-        ExceptionDTO response = new ExceptionDTO(400, "Duplicidade nos dados, já existe um registro com esse " + key);
+        ExceptionDTO response = new ExceptionDTO(409, "Duplicidade nos dados, já existe um registro com esse " + key);
 
         return ResponseEntity.badRequest().body(response);
     }

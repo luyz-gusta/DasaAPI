@@ -1,4 +1,4 @@
-package com.fiap.dasa_api.domain.dto.material;
+package com.fiap.dasa_api.domain.dto.barcode;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Nullable;
@@ -7,21 +7,21 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class UpdateMaterialDTO {
+public class UpdateBarcodeDTO {
     @NotNull
     private Long id;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Barcode is required")
     @NotNull
-    @Schema(example = "Paracetamol", requiredMode = Schema.RequiredMode.REQUIRED)
-    private String name;
+    @Schema(example = "A83C732HW", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String barcode;
 
     @Nullable
     private Boolean status;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Quantity is required")
     @NotNull
-    @Schema(example = "Paracetamol", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(example = "5", requiredMode = Schema.RequiredMode.REQUIRED)
     private int quantity;
 
     @NotNull
@@ -30,5 +30,5 @@ public class UpdateMaterialDTO {
 
     @NotNull
     @Schema(example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
-    private Long idTypeMaterial;
+    private Long idMaterial;
 }

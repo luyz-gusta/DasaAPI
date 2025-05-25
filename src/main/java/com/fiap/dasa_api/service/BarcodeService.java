@@ -25,18 +25,18 @@ public class BarcodeService {
     private final MaterialRepository materialRepository;
     private final UserRepository userRepository;
 
-    public List<Barcode> listAllMaterial() {
+    public List<Barcode> listAllBarcode() {
         return repository
                 .findAll();
     }
 
 
-    public List<Barcode> listMaterialActive() {
+    public List<Barcode> listBarcodeActive() {
         return repository
                 .findAllByStatusTrue();
     }
 
-    public Barcode listMaterialById(Long id) {
+    public Barcode listBarcodeById(Long id) {
         return repository
                 .findById(id)
                 .orElseThrow(EntityNotFoundException::new);

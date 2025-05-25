@@ -31,6 +31,9 @@ public class UserController implements UserControllerSpecs {
     public ResponseEntity<ApiListResponse<ResponseUserDTO>> getAllUsers() {
         try {
             List<ResponseUserDTO> users = service.listAllUsers();
+
+            System.out.println(users);
+
             return ResponseEntity.ok(ApiResponseBuilder.listSuccess(users));
         } catch (Exception exp) {
             throw new InternalException(exp);

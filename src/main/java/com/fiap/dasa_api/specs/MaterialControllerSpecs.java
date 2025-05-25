@@ -1,9 +1,8 @@
 package com.fiap.dasa_api.specs;
 
-import com.fiap.dasa_api.domain.dto.user.RequestUserDTO;
-import com.fiap.dasa_api.domain.dto.user.ResponseUserDTO;
+import com.fiap.dasa_api.domain.dto.material.RequestMaterialDTO;
+import com.fiap.dasa_api.domain.entities.Material;
 import com.fiap.dasa_api.infra.responses.details.ApiListResponse;
-import com.fiap.dasa_api.infra.responses.details.ApiMessageResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiSingleResponse;
 import com.fiap.dasa_api.specs.error.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,35 +18,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Tag(name = "User", description = "User operations")
+@Tag(name = "Material", description = "Material operations")
 @ApiResponseInternalServerError
-public interface UserControllerSpecs {
+public interface MaterialControllerSpecs {
 
-    @Operation(summary = "Find all users")
+    @Operation(summary = "Find all material")
     @ApiResponseForbidden
-    @ApiResponse(responseCode = "200", description = "User found successfully", content = {
+    @ApiResponse(responseCode = "200", description = "Material found successfully", content = {
             @Content(
                     mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ResponseUserDTO.class)
+                    schema = @Schema(implementation = ApiListResponse.class)
             )
     })
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<ApiListResponse<ResponseUserDTO>> getAllUsers();
+    ResponseEntity<ApiListResponse<Material>> getAllMaterial();
 
-    @Operation(summary = "Find user by id")
+    @Operation(summary = "Find material by id")
     @ApiResponseNotFound
     @ApiResponseForbidden
     @ApiResponseBadRequest
-    @ApiResponse(responseCode = "200", description = "User found successfully", content = {
+    @ApiResponse(responseCode = "200", description = "Material found successfully", content = {
             @Content(
                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                     schema = @Schema(implementation = ApiSingleResponse.class)
             )
     })
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<ApiSingleResponse<ResponseUserDTO>> getUserById(@PathVariable Long id);
+    ResponseEntity<ApiSingleResponse<Material>> getMaterialById(@PathVariable Long id);
 
-    @Operation(summary = "Create user")
+
+    @Operation(summary = "Create material")
     @ApiResponseBadRequest
     @ApiResponseDuplicatedResource
     @ApiResponses({
@@ -60,7 +60,6 @@ public interface UserControllerSpecs {
             )
     })
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<ApiSingleResponse<ResponseUserDTO>> registerUser(@RequestBody RequestUserDTO body);
-
+    ResponseEntity<ApiSingleResponse<Material>> createMaterial(@RequestBody RequestMaterialDTO body);
 
 }

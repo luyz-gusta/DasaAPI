@@ -48,11 +48,14 @@ public class TypeMaterialService {
 
     @Transactional
     public TypeMaterial editTypeMaterial(UpdateTypeMaterialDTO typeMaterialDTO) {
+        User user = userRepository.findById(typeMaterialDTO.getIdUser()).orElseThrow(EntityNotFoundException::new);
         TypeMaterial typeMaterial = repository
                 .findById(typeMaterialDTO.getId())
                 .orElseThrow(EntityNotFoundException::new);
 
-        typeMaterial.setUpdateTypeMaterial(typeMaterialDTO, typeMaterial.getUser());
+
+
+        typeMaterial.setUpdateTypeMaterial(typeMaterialDTO,user);
         return typeMaterial;
     }
 

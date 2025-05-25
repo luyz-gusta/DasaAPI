@@ -24,12 +24,6 @@ public interface TypeMaterialControllerSpecs {
 
     @Operation(summary = "Find all type material")
     @ApiResponseForbidden
-    @ApiResponse(responseCode = "200", description = "Type material found successfully", content = {
-            @Content(
-                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ApiSingleResponse.class)
-            )
-    })
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiListResponse<TypeMaterial>> getAllTypeMaterial();
 
@@ -37,12 +31,6 @@ public interface TypeMaterialControllerSpecs {
     @ApiResponseNotFound
     @ApiResponseForbidden
     @ApiResponseBadRequest
-    @ApiResponse(responseCode = "200", description = "Type material found successfully", content = {
-            @Content(
-                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ApiSingleResponse.class)
-            )
-    })
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiSingleResponse<TypeMaterial>> getTypeMaterialById(@PathVariable Long id);
 

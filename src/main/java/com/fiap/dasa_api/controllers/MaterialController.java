@@ -8,6 +8,7 @@ import com.fiap.dasa_api.infra.responses.details.ApiListResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiMessageResponse;
 import com.fiap.dasa_api.infra.responses.details.ApiSingleResponse;
 import com.fiap.dasa_api.service.MaterialService;
+import com.fiap.dasa_api.specs.MaterialControllerSpecs;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.InternalException;
@@ -20,7 +21,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/material")
-public class MaterialController {
+public class MaterialController implements MaterialControllerSpecs {
     private MaterialService service;
 
     @GetMapping

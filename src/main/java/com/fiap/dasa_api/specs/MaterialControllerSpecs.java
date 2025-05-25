@@ -24,12 +24,6 @@ public interface MaterialControllerSpecs {
 
     @Operation(summary = "Find all material")
     @ApiResponseForbidden
-    @ApiResponse(responseCode = "200", description = "Material found successfully", content = {
-            @Content(
-                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ApiListResponse.class)
-            )
-    })
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiListResponse<Material>> getAllMaterial();
 
@@ -37,12 +31,6 @@ public interface MaterialControllerSpecs {
     @ApiResponseNotFound
     @ApiResponseForbidden
     @ApiResponseBadRequest
-    @ApiResponse(responseCode = "200", description = "Material found successfully", content = {
-            @Content(
-                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ApiSingleResponse.class)
-            )
-    })
     @ResponseStatus(HttpStatus.OK)
     ResponseEntity<ApiSingleResponse<Material>> getMaterialById(@PathVariable Long id);
 
@@ -50,15 +38,6 @@ public interface MaterialControllerSpecs {
     @Operation(summary = "Create material")
     @ApiResponseBadRequest
     @ApiResponseDuplicatedResource
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Created")
-    })
-    @ApiResponse(responseCode = "201", description = "Created", content = {
-            @Content(
-                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                    schema = @Schema(implementation = ApiSingleResponse.class)
-            )
-    })
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<ApiSingleResponse<Material>> createMaterial(@RequestBody RequestMaterialDTO body);
 

@@ -6,7 +6,6 @@ import com.fiap.dasa_api.domain.entities.Material;
 import com.fiap.dasa_api.domain.entities.TypeMaterial;
 import com.fiap.dasa_api.domain.entities.User;
 import com.fiap.dasa_api.repositories.MaterialRepository;
-import com.fiap.dasa_api.repositories.TypeMaterialRepository;
 import com.fiap.dasa_api.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

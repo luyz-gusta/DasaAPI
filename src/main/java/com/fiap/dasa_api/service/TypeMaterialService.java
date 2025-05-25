@@ -2,9 +2,6 @@ package com.fiap.dasa_api.service;
 
 import com.fiap.dasa_api.domain.dto.typeMaterial.RequestTypeMaterialDTO;
 import com.fiap.dasa_api.domain.dto.typeMaterial.UpdateTypeMaterialDTO;
-import com.fiap.dasa_api.domain.dto.user.RequestUserDTO;
-import com.fiap.dasa_api.domain.dto.user.ResponseUserDTO;
-import com.fiap.dasa_api.domain.dto.user.UpdateUserDTO;
 import com.fiap.dasa_api.domain.entities.TypeMaterial;
 import com.fiap.dasa_api.domain.entities.User;
 import com.fiap.dasa_api.repositories.TypeMaterialRepository;

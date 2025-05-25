@@ -20,16 +20,18 @@ public class MaterialControllerIntegrationTest {
     private MaterialController materialController;
 
     @Test
-    public void testGetAllMaterialsFromDatabase() {
-        // Chama o método real do controller, que acessa o banco real
+    public void testGetAllMaterials_withRealDatabase() {
         ResponseEntity<ApiListResponse<Material>> response = materialController.getAllMaterial();
 
         assertEquals(200, response.getStatusCodeValue());
         assertNotNull(response.getBody());
-        List<Material> materiais = response.getBody().getData();
-        assertFalse(materiais.isEmpty(), "A lista de materiais não deve estar vazia");
 
-        // Você pode verificar um campo específico se quiser:
-        // assertEquals("Álcool em gel", materiais.get(0).getName());
+        List<Material> materials = response.getBody().getData();
+        assertNotNull(materials);
+        assertFalse(materials.isEmpty(), "A lista de materiais deve conter pelo menos um item");
+
+        Material first = materials.get(0);
+        assertNotNull(first.getId());
+        assertNotNull(first.getName());
     }
 }

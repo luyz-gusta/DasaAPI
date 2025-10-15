@@ -10,6 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
     private void validEmail(String email) {
         Optional<User> existingUser = repository
@@ -57,6 +59,8 @@ public class UserService {
         validEmail(userDTO.getEmail());
 
         User user = new User(userDTO);
+        // Criptografa a senha antes de salvar
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
         repository.save(user);
         return mapper.toUserResponse(user);

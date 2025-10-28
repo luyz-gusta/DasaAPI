@@ -1,0 +1,4 @@
+{
+    "appService.preDeployTask": "package:dasa-api",
+    "appService.deploySubpath": "target/dasa-api-0.0.1-SNAPSHOT.jar"
+}

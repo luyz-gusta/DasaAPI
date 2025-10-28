@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class LoginResponseDTO {
-    private Long userId;
-    private String userName;
+    private Long id;
+    private String name;
     private String email;
     private String registration;
     private String photo;

@@ -33,8 +33,8 @@ public class AuthService {
 
         // Retorna os dados do usuário
         return LoginResponseDTO.builder()
-                .userId(user.getId())
-                .userName(user.getName())
+                .id(user.getId())
+                .name(user.getName())
                 .email(user.getEmail())
                 .registration(user.getRegistration())
                 .photo(user.getPhoto())

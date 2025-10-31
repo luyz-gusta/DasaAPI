@@ -13,8 +13,7 @@ public class RequestBarcodeDTO {
     @Schema(example = "A83C732HW", requiredMode = Schema.RequiredMode.REQUIRED)
     private String barcode;
 
-    @NotBlank(message = "Quantity is required")
-    @NotNull
+    @NotNull(message = "Quantity is required")
     @Schema(example = "5", requiredMode = Schema.RequiredMode.REQUIRED)
     private int quantity;
 

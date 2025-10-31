@@ -59,12 +59,11 @@ public class Barcode {
 
     public Barcode(RequestBarcodeDTO barcodeDTO, User user, Material material) {
         this.barcode = barcodeDTO.getBarcode();
+        this.quantity = barcodeDTO.getQuantity();
         this.status = true;
         this.user = user;
         this.material = material;
     }
-
-
 
     public void setUpdateBarcode(UpdateBarcodeDTO barcodeDTO, User user, Material material) {
         this.barcode = barcodeDTO.getBarcode();

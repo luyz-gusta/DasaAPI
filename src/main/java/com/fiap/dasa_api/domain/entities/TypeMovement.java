@@ -16,8 +16,8 @@ public class TypeMovement {
     @Column(name = "id_type_movement")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "movement", nullable = false)
+    private String movement;
 
     @Column(name = "status")
     private Boolean status;
@@ -38,9 +38,9 @@ public class TypeMovement {
     public TypeMovement() {
     }
 
-    public TypeMovement(Long id, String name, Boolean status, LocalDateTime created_at, LocalDateTime updated_at, User user) {
+    public TypeMovement(Long id, String movement, Boolean status, LocalDateTime created_at, LocalDateTime updated_at, User user) {
         this.id = id;
-        this.name = name;
+        this.movement = movement;
         this.status = true;
         this.created_at = created_at;
         this.updated_at = updated_at;
@@ -48,13 +48,13 @@ public class TypeMovement {
     }
 
     public TypeMovement(RequestTypeMovementDTO TypeMovementDTO, User user) {
-        this.name = TypeMovementDTO.getMovement();
+        this.movement = TypeMovementDTO.getMovement();
         this.user = user;
         this.status = true;
     }
 
     public void setUpdateTypeMovement(UpdateTypeMovementDTO TypeMovementDTO, User user) {
-        this.name = TypeMovementDTO.getMovement();
+        this.movement = TypeMovementDTO.getMovement();
         this.user = user;
         this.status = TypeMovementDTO.getStatus();
     }
@@ -67,12 +67,12 @@ public class TypeMovement {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getMovement() {
+        return movement;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMovement(String movement) {
+        this.movement = movement;
     }
 
     public Boolean getStatus() {

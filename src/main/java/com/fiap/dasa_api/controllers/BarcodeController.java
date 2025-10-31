@@ -14,6 +14,7 @@ import com.fiap.dasa_api.service.BarcodeService;
 import com.fiap.dasa_api.service.MaterialService;
 import com.fiap.dasa_api.specs.BarcodeControllerSpecs;
 import com.fiap.dasa_api.specs.MaterialControllerSpecs;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.InternalException;
@@ -57,8 +58,8 @@ public class BarcodeController implements BarcodeControllerSpecs {
             return ResponseEntity.status(HttpStatus.CREATED).body(
                     ApiResponseBuilder.singleCreate(barcode)
             );
-        } catch (Exception exp) {
-            throw new InternalException(exp);
+        } catch (EntityNotFoundException exp) {
+            throw new EntityNotFoundException(exp);
         }
     }
 
@@ -68,8 +69,8 @@ public class BarcodeController implements BarcodeControllerSpecs {
         try {
             Barcode barcode = service.editBarcode(barcodeDTO);
             return ResponseEntity.ok(ApiResponseBuilder.singleUpdate(barcode));
-        } catch (Exception exp) {
-            throw new InternalException(exp);
+        } catch (EntityNotFoundException exp) {
+            throw new EntityNotFoundException(exp);
         }
     }
 

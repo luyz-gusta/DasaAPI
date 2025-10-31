@@ -16,8 +16,8 @@ public class Stock {
     @Column(name = "id_stock", nullable = false)
     private long idStock;
 
-    @Column(name = "quantity_movemented", nullable = false)
-    private int quantityMovemented;
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
 
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
@@ -37,9 +37,9 @@ public class Stock {
     @JoinColumn(name = "id_barcode")
     private Barcode barcode;
 
-    public Stock(long idStock, int quantityMovemented, Timestamp createdAt, Timestamp updatedAt, User user, TypeMovement typeMovement, Barcode barcode) {
+    public Stock(long idStock, int quantity, Timestamp createdAt, Timestamp updatedAt, User user, TypeMovement typeMovement, Barcode barcode) {
         this.idStock = idStock;
-        this.quantityMovemented = quantityMovemented;
+        this.quantity = quantity;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.user = user;
@@ -51,14 +51,14 @@ public class Stock {
     }
 
     public Stock(RequestStockDTO barcodeDTO, User user, Barcode barcode, TypeMovement typeMovement) {
-        this.quantityMovemented = barcodeDTO.getQuantityMovemented();
+        this.quantity = barcodeDTO.getQuantity();
         this.user = user;
         this.barcode = barcode;
         this.typeMovement = typeMovement;
     }
 
     public void setUpdateStock(UpdateStockDTO stockDTO, User user, Barcode barcode, TypeMovement typeMovement) {
-        this.quantityMovemented = stockDTO.getQuantityMovemented();
+        this.quantity = stockDTO.getQuantity();
         this.barcode = barcode;
         this.user = user;
         this.typeMovement = typeMovement;
@@ -72,12 +72,12 @@ public class Stock {
         this.idStock = idStock;
     }
 
-    public int getQuantityMovemented() {
-        return quantityMovemented;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuantityMovemented(int quantityMovemented) {
-        this.quantityMovemented = quantityMovemented;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Timestamp getCreatedAt() {

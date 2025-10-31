@@ -12,7 +12,7 @@ public class RequestStockDTO {
     @NotBlank(message = "Quantity is required")
     @NotNull
     @Schema(example = "5", requiredMode = Schema.RequiredMode.REQUIRED)
-    private int quantityMovemented;
+    private int quantity;
 
     @NotNull
     @Schema(example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
